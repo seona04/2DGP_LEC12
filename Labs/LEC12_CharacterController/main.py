@@ -8,18 +8,23 @@ import boy
 import grass
 
 def handle_events():
-    global running
+    global running, player
 
     event_list = get_events()
     for event in event_list:
         if event.type == SDL_QUIT:
             running = False
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            running = False
+        elif event.type == SDL_KEYDOWN:
+            if event.key == SDLK_ESCAPE:
+                running = False
+            else:
+                player.handle_event(event)
+        elif event.type == SDL_KEYUP:
+            player.handle_event(event)
 
 
 def reset_world():
-    global world
+    global world, player
 
     world = []
 
