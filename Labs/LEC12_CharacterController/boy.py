@@ -8,6 +8,7 @@ from transitions import Machine
 class Boy:
     IDLE_DURATION = 5
     SLEEP_DURATION = 5
+    SLEEP_Y = 80
 
     def __init__(self):
         self.x, self.y = 400, 90
@@ -44,5 +45,5 @@ class Boy:
             self.image.clip_draw(self.frame * 100, 300, 100, 100, self.x, self.y)
         elif self.state == 'SLEEP':
             self.image.clip_composite_draw(
-                0, 300, 100, 100, math.pi / 2, '', self.x, self.y
+                0, 300, 100, 100, math.pi / 2, '', self.x, self.SLEEP_Y, 100, 100
             )
